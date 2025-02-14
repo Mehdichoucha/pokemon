@@ -6,7 +6,7 @@ class Pokemon:
         self.__atk = atk
         self.__dfc = dfc
         self.__type_pokemon = type_pokemon
-
+#
     # Getter methods
     def get_name(self):
         return self.__name

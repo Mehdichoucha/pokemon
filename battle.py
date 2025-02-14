@@ -3,7 +3,7 @@ import pygame
 import random
 import time
 import sys
-
+#
 class Battle:
     def __init__(self, pokemon1, pokemon3):
         self.pokemon1 = pokemon1

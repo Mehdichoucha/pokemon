@@ -1,4 +1,4 @@
-from test1 import Pokemon 
+from test1 import Pokemon  
 from battle import Battle    
 
 # instances  of Pokémon
