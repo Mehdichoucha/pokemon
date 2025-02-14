@@ -32,7 +32,7 @@ if random_wild == 4:
 
 
 
-random_pokemon1 = random.randint(4, 4)
+random_pokemon1 = random.randint(1, 4)
 if random_pokemon1 == 1:
     pokemon1 = pygame.transform.scale(pygame.image.load("images/pokemon/squirtle1.png"), (110, 100))
     a = 560
@@ -50,23 +50,41 @@ if random_pokemon1 == 4:
     a = 530
     b = 65
 
-random_pokemon2 = random.randint(1, 4)
+random_pokemon2 = random.randint(3, 3)
 if random_pokemon2 == 1:
-    pokemon2 = pygame.transform.scale(pygame.image.load("images/pokemon/squirtle2.png"), (200, 190))
-    c = 560
-    d = 95
+    pokemon2 = pygame.transform.scale(pygame.image.load("images/pokemon/squirtle2.png"), (200, 200))
+    c = 30
+    d = 245
 if random_pokemon2 == 2:
-    pokemon2 = pygame.transform.scale(pygame.image.load("images/pokemon/serperior2.png"), (400, 190))
-    c = 560
-    d = 95
+    pokemon2 = pygame.transform.scale(pygame.image.load("images/pokemon/serperior2.png"), (300, 300))
+    c = 10
+    d = 180
 if random_pokemon2 == 3:
-    pokemon2 = pygame.transform.scale(pygame.image.load("images/pokemon/volcarona2.png"), (600, 90))
-    c = 560
-    d = 95
+    pokemon2 = pygame.transform.scale(pygame.image.load("images/pokemon/volcarona2.png"), (340, 300))
+    c = 10
+    d = 185
 if random_pokemon2 == 4:
     pokemon2 = pygame.transform.scale(pygame.image.load("images/pokemon/pikachu.png"), (600, 90))
     c = 560
     d = 95
+
+random_trainer = random.randint(1,1)
+if random_trainer == 1:
+    trainer = pygame.transform.scale(pygame.image.load("images/trainers/kid.png"), (110, 140))
+    e = 680
+    f = 40
+if random_trainer == 2:
+    trainer = pygame.transform.scale(pygame.image.load("images/trainers/girl.png"), (110, 180))
+    e = 680
+    f = 10
+if random_trainer == 3:
+    trainer = pygame.transform.scale(pygame.image.load("images/trainers/woman.png"), (120, 180))
+    e = 670
+    f = 10
+if random_trainer == 4:
+    trainer = pygame.transform.scale(pygame.image.load("images/trainers/man.png"), (100, 180))
+    e = 700
+    f = 15
 
 
 
@@ -83,8 +101,10 @@ while running:
     screen.blit(background, (0, 0))
     screen.blit(bush1, (420, 140))
     screen.blit(bush2, (-150, 330))
+    screen.blit(trainer, (e, f))
+
     screen.blit(pokemon1, (a, b))
-    screen.blit(pokemon2, (11111, 11111))
+    screen.blit(pokemon2, (c, d))
 
 
     screen.blit(menu, (0, 420))
@@ -95,3 +115,4 @@ while running:
 
     pygame.display.flip()
     clock.tick(120)
+
