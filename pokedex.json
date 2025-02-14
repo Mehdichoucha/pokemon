@@ -1,0 +1,22 @@
+{
+    "Pokemon": [
+        {
+            "name": "Charmander",
+            "type": "Fire",
+            "level": 1,
+            "evolution": "Charizard"
+        },
+        {
+            "name": "Bulbasaur",
+            "type": "Grass",
+            "level": 3,
+            "evolution": "Ivysaur"
+        },
+        {
+            "name": "Squirtle",
+            "type": "Water",
+            "level": 5,
+            "evolution": "Wartortle"
+        }
+    ]
+}
