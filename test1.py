@@ -43,7 +43,7 @@ class Pokemon:
             self.__pv = 0
 
     # Method to calculate damage
-    def calculate_demage(self, defense):
+    def calculate_damage(self, defense):
         type_advantages = {
             ("fire", "water"): 0.5,
             ("water", "fire"): 2,

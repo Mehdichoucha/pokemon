@@ -3,7 +3,7 @@ import pygame
 import random
 import time
 import sys
-#
+
 class Battle:
     def __init__(self, pokemon1, pokemon3):
         self.pokemon1 = pokemon1
@@ -14,7 +14,7 @@ class Battle:
         succes_probabilitie = 0.8
         chance = random.random()
         if chance <= succes_probabilitie:
-            damage = attack.calculate_demage(defense)
+            damage = attack.calculate_damage(defense)
             defense.receive_damage(damage)
             message = f"{attack.get_name()} attack {defense.get_name()} and inflicts {damage} damage!"
             print(message)
@@ -35,6 +35,8 @@ class Battle:
             print(f"{self.pokemon1.get_name()}  win!")
         else:
             print(f"{self.pokemon3.get_name()}  win!")
+    
+    
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
@@ -51,7 +53,7 @@ circle_radius = 50
 
 pokemon1 = Pokemon("Pikachu",100,5,55,40,"electric")
 pokemon2 = Pokemon("Bulbizarre", 100, 5, 50, 45, "plant")
-pokemon3 = Pokemon("Salamèche",100,10,45,60,"fire")
+pokemon3 = Pokemon("Salamèche",100,10,45,30,"fire")
 
 combat = Battle(pokemon1,pokemon3)
 
@@ -102,7 +104,7 @@ def draw_message(message):
     text_rect = text_surface.get_rect(center=(WIDTH//2, HEIGHT//2))
     screen.blit(text_surface,text_rect)
     pygame.display.flip()
-    time.sleep(5)
+    time.sleep(3)
     pygame.quit()
     sys.exit()
 
