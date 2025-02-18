@@ -7,7 +7,7 @@ SCREEN = pygame.display.set_mode((800, 600))
 WHITE = (255, 255, 255)
 pygame.display.set_caption("Pokémon")
 
-FONT = pygame.font.Font("Arial", 30)
+FONT = pygame.font.Font("pokemon_font.ttf", 30)
 
 # game inteface
 BUTTON = pygame.image.load("images/menu/BUTTON.png")
