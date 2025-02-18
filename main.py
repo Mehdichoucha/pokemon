@@ -9,8 +9,14 @@ pygame.display.set_caption("Pokémon")
 
 
 # game inteface
-menu = pygame.transform.scale(pygame.image.load("images/menu/menu.png"), (800, 200))
+menu = pygame.transform.scale(pygame.image.load("images/menu/menu2.png"), (800, 200))
 button = pygame.image.load("images/menu/button.png")
+
+
+hp1 = pygame.transform.scale(pygame.image.load("images/battle_assets/hp1.png"), (270, 80))
+hp2 = pygame.transform.scale(pygame.image.load("images/battle_assets/hp2.png"), (270, 80))
+
+
 
 random_wild = random.randint(1, 3)
 if random_wild == 1:
@@ -24,7 +30,7 @@ if random_wild == 2:
 if random_wild == 3:
     bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/beach1.png"), (370, 100))
     bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/beach2.png"), (600, 90))
-    background = pygame.image.load("images/battle_assets/background4.png")
+    background = pygame.image.load("images/battle_assets/background3.png")
 if random_wild == 4:
     bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/bush_sunset1.png"), (370, 100))
     bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/bush_sunset2.png"), (600, 90))
@@ -32,7 +38,7 @@ if random_wild == 4:
 
 
 
-random_pokemon1 = random.randint(1, 4)
+random_pokemon1 = random.randint(4, 4)
 if random_pokemon1 == 1:
     pokemon1 = pygame.transform.scale(pygame.image.load("images/pokemon/squirtle1.png"), (110, 100))
     a = 560
@@ -46,29 +52,29 @@ if random_pokemon1 == 3:
     a = 520
     b = 30
 if random_pokemon1 == 4:
-    pokemon1 = pygame.transform.scale(pygame.image.load("images/pokemon/pikachu.png"), (170, 150))
-    a = 530
+    pokemon1 = pygame.transform.scale(pygame.image.load("images/pokemon/pikachu.png"), (126, 150))
+    a = 550
     b = 65
 
-random_pokemon2 = random.randint(3, 3)
+random_pokemon2 = random.randint(2, 2)
 if random_pokemon2 == 1:
     pokemon2 = pygame.transform.scale(pygame.image.load("images/pokemon/squirtle2.png"), (200, 200))
     c = 30
     d = 245
 if random_pokemon2 == 2:
-    pokemon2 = pygame.transform.scale(pygame.image.load("images/pokemon/serperior2.png"), (300, 300))
-    c = 10
-    d = 180
+    pokemon2 = pygame.transform.scale(pygame.image.load("images/pokemon/serperior2.png"), (330, 330))
+    c = 20
+    d = 150
 if random_pokemon2 == 3:
     pokemon2 = pygame.transform.scale(pygame.image.load("images/pokemon/volcarona2.png"), (340, 300))
     c = 10
-    d = 185
+    d = 165
 if random_pokemon2 == 4:
-    pokemon2 = pygame.transform.scale(pygame.image.load("images/pokemon/pikachu.png"), (600, 90))
-    c = 560
-    d = 95
+    pokemon2 = pygame.transform.scale(pygame.image.load("images/pokemon/pikachu2.png"), (190, 250))
+    c = 30
+    d = 190
 
-random_trainer = random.randint(1,1)
+random_trainer = random.randint(1, 4)
 if random_trainer == 1:
     trainer = pygame.transform.scale(pygame.image.load("images/trainers/kid.png"), (110, 140))
     e = 680
@@ -112,6 +118,10 @@ while running:
     screen.blit(button, (20, 530))
     screen.blit(button, (270, 465))
     screen.blit(button, (270, 530))
+    screen.blit(hp1, (10,14))
+    screen.blit(hp2, (520,320))
+
+
 
     pygame.display.flip()
     clock.tick(120)
