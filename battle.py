@@ -5,9 +5,9 @@ import time
 import sys
 
 class Battle:
-    def __init__(self, pokemon1, pokemon3):
+    def __init__(self, pokemon1, pokemon4):
         self.pokemon1 = pokemon1
-        self.pokemon3 = pokemon3
+        self.pokemon4 = pokemon4
         self.tour_joueur = False
 
     def attack(self, attack, defense):
@@ -25,16 +25,16 @@ class Battle:
             return message 
 
     def start_battle(self):
-        while self.pokemon1.get_pv() > 0 and self.pokemon3.get_pv() > 0:
-            self.attack(self.pokemon1, self.pokemon3)
-            if self.pokemon3.get_pv() <= 0:
+        while self.pokemon1.get_pv() > 0 and self.pokemon4.get_pv() > 0:
+            self.attack(self.pokemon1, self.pokemon4)
+            if self.pokemon4.get_pv() <= 0:
                 break
-            self.attack(self.pokemon3, self.pokemon1)
+            self.attack(self.pokemon4, self.pokemon1)
 
         if self.pokemon1.get_pv() > 0:
             print(f"{self.pokemon1.get_name()}  win!")
         else:
-            print(f"{self.pokemon3.get_name()}  win!")
+            print(f"{self.pokemon4.get_name()}  win!")
     
     
 
@@ -51,11 +51,12 @@ circle1_x, circle1_y = 100, 400
 circle2_x, circle2_y = 400, 500
 circle_radius = 50
 
-pokemon1 = Pokemon("Pikachu",100,5,55,40,"electric")
-pokemon2 = Pokemon("Bulbizarre", 100, 5, 50, 45, "plant")
-pokemon3 = Pokemon("Salamèche",100,10,45,30,"fire")
+pokemon1 = Pokemon("Pikachu",35,1,55,40,"electric")
+pokemon2 = Pokemon("Bulbizarre", 45, 1,49, 49, "plant")
+pokemon3 = Pokemon("Salamèche",39,1,52,43,"fire")
+pokemon4 = Pokemon("Mustébouée",55,1,65,35,"water")
 
-combat = Battle(pokemon1,pokemon3)
+combat = Battle(pokemon1,pokemon4)
 
 def is_inside_circle(pos,circle_x,circle_y,radius):
     x,y = pos
@@ -69,7 +70,7 @@ def draw_action_button():
         {"text": "Attack","rect": pygame.Rect(button_margin, HEIGHT - button_height - button_margin,button_width, button_height)},
         {"text": "Change", "rect": pygame.Rect(button_margin * 2 + button_width, HEIGHT - button_height - button_margin,
         button_width,button_height)},
-        {"text": "Quit", "rect": pygame.Rect(button_margin * 3 + button_width * 2, HEIGHT - button_height- button_margin,
+        {"text": "Escape", "rect": pygame.Rect(button_margin * 3 + button_width * 2, HEIGHT - button_height- button_margin,
         button_width, button_height)},
     ]
     for button in buttons:
@@ -93,7 +94,7 @@ def draw_attack_message(message):
 def draw_pv():
     """Fonction for showing the  PV"""
     pv_text1 = FONT.render(f"{pokemon1.get_name()}: {pokemon1.get_pv()} PV", True, BLACK)
-    pv_text2 = FONT.render(f"{pokemon3.get_name()}: {pokemon3.get_pv()} PV", True, BLACK)
+    pv_text2 = FONT.render(f"{pokemon4.get_name()}: {pokemon4.get_pv()} PV", True, BLACK)
     screen.blit(pv_text1, (500,50))
     screen.blit(pv_text2, (500,100))
 
@@ -123,19 +124,19 @@ while True:
             for button in buttons:
                 if button["rect"].collidepoint(mouse_pos):
                     if button["text"] == "Attack":
-                        message = combat.attack(pokemon1, pokemon3)
+                        message = combat.attack(pokemon1, pokemon4)
                         draw_attack_message(message)
-                        if pokemon3.get_pv() <= 0:
-                            draw_message(f"{pokemon1.get_name()} win! {pokemon3.get_name()} lose!")
+                        if pokemon4.get_pv() <= 0:
+                            draw_message(f"{pokemon1.get_name()} win! {pokemon4.get_name()} lose!")
                             break
-                        message = combat.attack(pokemon3, pokemon1)
+                        message = combat.attack(pokemon4, pokemon1)
                         draw_attack_message(message)
                         if pokemon1.get_pv() <= 0:
-                            draw_message(f"{pokemon3.get_name()} win! {pokemon1.get_name()} lose!")
+                            draw_message(f"{pokemon4.get_name()} win! {pokemon1.get_name()} lose!")
                             break
                     elif button["text"] == "Change":
-                        print("change the pokemon")
-                    elif button["text"] == "Quit":
+                        print("changed my pokemon")
+                    elif button["text"] == "Escape":
                         pygame.quit()
                         sys.exit()
 
