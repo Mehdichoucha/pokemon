@@ -2,6 +2,7 @@ import pygame
 import random
 import time
 
+pygame.init()
 screen = pygame.display.set_mode((800, 600))
 WHITE = (255, 255, 255)
 pygame.display.set_caption("Pokémon")
@@ -14,7 +15,7 @@ button = pygame.image.load("images/menu/button.png")
 hp1 = pygame.transform.scale(pygame.image.load("images/battle_assets/hp1.png"), (270, 80))
 hp2 = pygame.transform.scale(pygame.image.load("images/battle_assets/hp2.png"), (270, 80))
 
-
+# choose the arena
 random_wild = random.randint(1, 4)
 if random_wild == 1:
     bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/bush1.png"), (370, 100))
@@ -33,7 +34,7 @@ if random_wild == 4:
     bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/clear2.png"), (600, 90))
     background = pygame.image.load("images/battle_assets/background4.png")
 
-
+# choose the opponent pokemon
 random_pokemon1 = random.randint(1, 4)
 if random_pokemon1 == 1:
     pokemon1 = pygame.transform.scale(pygame.image.load("images/pokemon/squirtle1.png"), (110, 100))
@@ -52,6 +53,7 @@ if random_pokemon1 == 4:
     a = 550
     b = 65
 
+# choose the main pokemon
 random_pokemon2 = random.randint(1, 4)
 if random_pokemon2 == 1:
     pokemon2 = pygame.transform.scale(pygame.image.load("images/pokemon/squirtle2.png"), (200, 200))
@@ -70,6 +72,7 @@ if random_pokemon2 == 4:
     c = 30
     d = 190
 
+# choose the opponent
 random_trainer = random.randint(1, 4)
 if random_trainer == 1:
     trainer = pygame.transform.scale(pygame.image.load("images/trainers/kid.png"), (110, 140))
@@ -89,6 +92,7 @@ if random_trainer == 4:
     f = 15
 
 
+# main loop
 running = True
 
 while running:
