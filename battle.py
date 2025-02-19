@@ -32,9 +32,11 @@ class Battle:
             self.attack(self.pokemon4, self.pokemon1)
 
         if self.pokemon1.get_pv() > 0:
-            print(f"{self.pokemon1.get_name()}  win!")
+            self.pokemon1.gain_experience(350)
+            print(f"{self.pokemon1.get_name()} win!")
         else:
-            print(f"{self.pokemon4.get_name()}  win!")
+            self.pokemon4.gain_experience(350)
+            print(f"{self.pokemon4.get_name()} win!")
     
     
 
@@ -51,10 +53,10 @@ circle1_x, circle1_y = 100, 400
 circle2_x, circle2_y = 400, 500
 circle_radius = 50
 
-pokemon1 = Pokemon("Pikachu",35,1,55,40,"electric")
-pokemon2 = Pokemon("Bulbizarre", 45, 1,49, 49, "plant")
-pokemon3 = Pokemon("Salamèche",39,1,52,43,"fire")
-pokemon4 = Pokemon("Mustébouée",55,1,65,35,"water")
+pokemon1 = Pokemon("Pikachu",35,1,55,40,"electric",0)
+pokemon2 = Pokemon("Bulbizarre", 45, 1,49, 49, "plant",0)
+pokemon3 = Pokemon("Salamèche",39,1,52,43,"fire",0)
+pokemon4 = Pokemon("Mustébouée",55,1,65,35,"water",0)
 
 combat = Battle(pokemon1,pokemon4)
 
@@ -98,17 +100,28 @@ def draw_pv():
     screen.blit(pv_text1, (500,50))
     screen.blit(pv_text2, (500,100))
 
-def draw_message(message):
+def draw_message(victory_message, xp_message):
     """Fonction fot showing the victory/defeat message """
     screen.fill(WHITE)
-    text_surface = FONT.render(message, True, BLACK)
-    text_rect = text_surface.get_rect(center=(WIDTH//2, HEIGHT//2))
-    screen.blit(text_surface,text_rect)
+    victory_surface = FONT.render(victory_message, True, BLACK)
+    victory_rect = victory_surface.get_rect(center=(WIDTH//2, HEIGHT //2 - 20))
+    screen.blit(victory_surface, victory_rect)
+    
+    xp_surface = FONT.render(xp_message, True, BLACK)
+    xp_rect = xp_surface.get_rect(center=(WIDTH //2, HEIGHT //2 + 20))
+    screen.blit(xp_surface, xp_rect)
+
     pygame.display.flip()
     time.sleep(3)
     pygame.quit()
     sys.exit()
 
+def draw_level_and_up():
+    """Fonction for showing the level and XP"""
+    level_xp_text1 = FONT.render(f"{pokemon1.get_name()}: Level {pokemon1.get_level()}, XP {pokemon1.get_xp()}/{pokemon1.get_xp_to_next_level()}", True, BLACK)
+    level_xp_text2 = FONT.render(f"{pokemon4.get_name()}: Level {pokemon4.get_level()}, XP {pokemon4.get_xp()} / {pokemon4.get_xp_to_next_level()}", True, BLACK)
+    screen.blit(level_xp_text1, (500,150))
+    screen.blit(level_xp_text2, (500,200))
 clock = pygame.time.Clock()
 last_attack_time =0
 
@@ -127,12 +140,18 @@ while True:
                         message = combat.attack(pokemon1, pokemon4)
                         draw_attack_message(message)
                         if pokemon4.get_pv() <= 0:
-                            draw_message(f"{pokemon1.get_name()} win! {pokemon4.get_name()} lose!")
+                            pokemon1.gain_experience(350)
+                            victory_message = f"{pokemon1.get_name()} win! {pokemon4.get_name()} loses!"
+                            xp_message = f"{pokemon1.get_name()} gained 350 XP"
+                            draw_message(victory_message, xp_message)
                             break
                         message = combat.attack(pokemon4, pokemon1)
                         draw_attack_message(message)
                         if pokemon1.get_pv() <= 0:
-                            draw_message(f"{pokemon4.get_name()} win! {pokemon1.get_name()} lose!")
+                            pokemon4.gain_experience(350)
+                            victory_message = f"{pokemon4.get_name()} win! {pokemon1.get_name()} loses!"
+                            xp_message = f"{pokemon4.get_name()} gained 350 XP!"
+                            draw_message(victory_message, xp_message)
                             break
                     elif button["text"] == "Change":
                         print("changed my pokemon")
@@ -145,6 +164,7 @@ while True:
     pygame.draw.circle(screen, RED, [circle2_x, circle2_y], 50, 3)
     draw_action_button()
     draw_pv()
+    draw_level_and_up()
 
     pygame.display.flip()
 

@@ -1,12 +1,14 @@
 class Pokemon:
-    def __init__(self, name, pv, niv, atk, dfc, type_pokemon):
+    def __init__(self, name, pv, level, atk, dfc, type_pokemon,gain_xp):
         self.__name = name
         self.__pv = pv
-        self.__niv = niv
         self.__atk = atk
         self.__dfc = dfc
         self.__type_pokemon = type_pokemon
-#
+        self.__level = level 
+        self.__xp = 0
+        self.__xp_to_next_level = 1000
+        self.__gain_xp = gain_xp
     # Getter methods
     def get_name(self):
         return self.__name
@@ -20,11 +22,20 @@ class Pokemon:
     def get_dfc(self):
         return self.__dfc
 
-    def get_niv(self):
-        return self.__niv
+    def get_level(self):
+        return self.__level
 
     def get_type_pokemon(self):
         return self.__type_pokemon
+    
+    def get_xp(self):
+        return self.__xp
+    
+    def get_xp_to_next_level(self):
+        return self.__xp_to_next_level
+    
+    def get_gain_xp(self):
+        return self.__gain_xp
 
     # Setter methods
     def set_atk(self, atk):
@@ -33,8 +44,11 @@ class Pokemon:
     def set_dfc(self, dfc):
         self.__dfc = dfc
 
-    def set_niv(self, niv):
-        self.__niv = niv
+    def set_level(self, level):
+        self.__level = level
+    
+    def set_gain_xp(self,gain_xp):
+        self.__gain_xp = gain_xp
 
     # Method to receive damage
     def receive_damage(self, damage):
@@ -56,3 +70,17 @@ class Pokemon:
         multiple = type_advantages.get((self.__type_pokemon, defense.get_type_pokemon()), 1)
         damage = self.__atk * multiple - defense.get_dfc()
         return max(damage, 0)
+    
+    def level_up(self):
+        self.__level +=1
+        self.__xp -= self.__xp_to_next_level
+        self.__xp_to_next_level = int(self.__xp_to_next_level * 1,5)
+        self.__pv += 10
+        self.__atk += 5
+        self.__dfc += 5
+        print(f"{self.__name} has been level up to level {self.__level}")
+    
+    def gain_experience(self, xp_earned):
+        self.__xp += xp_earned
+        if self.__xp >= self.__xp_to_next_level:
+            self.level_up()
