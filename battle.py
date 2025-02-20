@@ -122,6 +122,7 @@ def draw_level_and_up():
     level_xp_text2 = FONT.render(f"{pokemon4.get_name()}: Level {pokemon4.get_level()}, XP {pokemon4.get_xp()} / {pokemon4.get_xp_to_next_level()}", True, BLACK)
     screen.blit(level_xp_text1, (500,150))
     screen.blit(level_xp_text2, (500,200))
+
 clock = pygame.time.Clock()
 last_attack_time =0
 
@@ -144,6 +145,8 @@ while True:
                             victory_message = f"{pokemon1.get_name()} win! {pokemon4.get_name()} loses!"
                             xp_message = f"{pokemon1.get_name()} gained 350 XP"
                             draw_message(victory_message, xp_message)
+                            draw_pv()
+                            draw_level_and_up()
                             break
                         message = combat.attack(pokemon4, pokemon1)
                         draw_attack_message(message)
@@ -152,6 +155,8 @@ while True:
                             victory_message = f"{pokemon4.get_name()} win! {pokemon1.get_name()} loses!"
                             xp_message = f"{pokemon4.get_name()} gained 350 XP!"
                             draw_message(victory_message, xp_message)
+                            draw_pv()
+                            draw_level_and_up()
                             break
                     elif button["text"] == "Change":
                         print("changed my pokemon")
