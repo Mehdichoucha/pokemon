@@ -8,31 +8,28 @@ WHITE = (255, 255, 255)
 pygame.display.set_caption("Pokémon")
 
 
-# game inteface
-menu = pygame.transform.scale(pygame.image.load("images/menu/menu2.png"), (800, 200))
-button = pygame.image.load("images/menu/button.png")
-
-hp1 = pygame.transform.scale(pygame.image.load("images/battle_assets/hp1.png"), (270, 80))
-hp2 = pygame.transform.scale(pygame.image.load("images/battle_assets/hp2.png"), (270, 80))
-
-# choose the arena
-random_wild = random.randint(1, 4)
-if random_wild == 1:
-    bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/bush1.png"), (370, 100))
-    bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/bush2.png"), (600, 90))
-    background = pygame.image.load("images/battle_assets/background.png")
-if random_wild == 2:
-    bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/arena1.png"), (370, 110))
-    bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/arena2.png"), (600, 90))
-    background = pygame.image.load("images/battle_assets/background2.png")
-if random_wild == 3:
-    bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/beach1.png"), (370, 100))
-    bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/beach2.png"), (600, 90))
-    background = pygame.image.load("images/battle_assets/background3.png")
-if random_wild == 4:
-    bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/clear1.png"), (370, 100))
-    bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/clear2.png"), (600, 90))
-    background = pygame.image.load("images/battle_assets/background4.png")
+def fight_menu():
+    menu = pygame.transform.scale(pygame.image.load("images/menu/menu2.png"), (800, 200))
+    button = pygame.image.load("images/menu/button.png")
+    hp1 = pygame.transform.scale(pygame.image.load("images/battle_assets/hp1.png"), (270, 80))
+    hp2 = pygame.transform.scale(pygame.image.load("images/battle_assets/hp2.png"), (270, 80))
+    random_wild = random.randint(1, 4)
+    if random_wild == 1:
+        bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/bush1.png"), (370, 100))
+        bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/bush2.png"), (600, 90))
+        background = pygame.image.load("images/battle_assets/background.png")
+    if random_wild == 2:
+        bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/arena1.png"), (370, 110))
+        bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/arena2.png"), (600, 90))
+        background = pygame.image.load("images/battle_assets/background2.png")
+    if random_wild == 3:
+        bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/beach1.png"), (370, 100))
+        bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/beach2.png"), (600, 90))
+        background = pygame.image.load("images/battle_assets/background3.png")
+    if random_wild == 4:
+        bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/clear1.png"), (370, 100))
+        bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/clear2.png"), (600, 90))
+        background = pygame.image.load("images/battle_assets/background4.png")
 
 # choose the opponent pokemon
 random_pokemon1 = random.randint(1, 4)

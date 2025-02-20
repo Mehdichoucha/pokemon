@@ -8,7 +8,7 @@ SCREEN = pygame.display.set_mode((800, 600))
 WHITE = (255, 255, 255)
 BACKGROUND = pygame.transform.scale(pygame.image.load("images/title_background.png"), (800, 600))
 pygame.display.set_caption("Pokémon")
-FONT = pygame.font.Font(None, 48)
+FONT = pygame.font.Font("pokemon_font.ttf", 48)
 
 
 
@@ -58,12 +58,64 @@ def main_menu():
     SCREEN.blit(OPTION_TEXT, (OPTION_RECT.x+ 30, OPTION_RECT.y + 22))
     SCREEN.blit(QUIT_TEXT, (QUIT_RECT.x + 45, QUIT_RECT.y + 22))
 
+
 def game_screen():
-    """#écran du jeu---------------------------------------------------------------------------------""" 
-    GAME_BACKGROUND = pygame.transform.scale(pygame.image.load("background_pokemon2.png"),(800, 600))
-    SCREEN.blit(GAME_BACKGROUND, (0, 0))
-    pygame.draw.rect(SCREEN, (255, 0, 0), (100, 100, 100, 100))
+
+    menu = pygame.transform.scale(pygame.image.load("images/menu/menu2.png"), (800, 200))
+    button = pygame.image.load("images/menu/button.png")
+
+    hp1 = pygame.transform.scale(pygame.image.load("images/battle_assets/hp1.png"), (270, 80))
+    hp2 = pygame.transform.scale(pygame.image.load("images/battle_assets/hp2.png"), (270, 80))
+
+    # choose the arena
+    random_wild = random.randint(1, 4)
+    if random_wild == 1:
+            bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/bush1.png"), (370, 100))
+            bush_fight1 = bush1
+            bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/bush2.png"), (600, 90))
+            bush_fight2 = bush2
+            background = pygame.image.load("images/battle_assets/background.png")
+            background_fight = background
+    if random_wild == 2:
+            bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/arena1.png"), (370, 110))
+            bush_fight1 = bush1
+            bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/arena2.png"), (600, 90))
+            bush_fight2 = bush2
+            background = pygame.image.load("images/battle_assets/background2.png")
+            background_fight = background
+    if random_wild == 3:
+            bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/beach1.png"), (370, 100))
+            bush_fight1 = bush1
+            bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/beach2.png"), (600, 90))
+            bush_fight2 = bush2
+            background = pygame.image.load("images/battle_assets/background3.png")
+            background_fight = background
+    if random_wild == 4:
+            bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/clear1.png"), (370, 100))
+            bush_fight1 = bush1
+            bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/clear2.png"), (600, 90))
+            bush_fight2 = bush2
+            background = pygame.image.load("images/battle_assets/background4.png")
+            background_fight = background
+
+
+
+    SCREEN.blit(background_fight, (0, 0))
+    SCREEN.blit(bush_fight1, (420, 140))
+    SCREEN.blit(bush_fight2, (-150, 330))
+
+    SCREEN.blit(menu, (0, 420))
+    SCREEN.blit(button, (20, 465))
+    SCREEN.blit(button, (20, 530))
+    SCREEN.blit(button, (270, 465))
+    SCREEN.blit(button, (270, 530))
+
+    SCREEN.blit(hp1, (10,14))
+    SCREEN.blit(hp2, (520,320))
     pygame.display.flip()
+
+
+
 
 # Define all pages
 main_page = True
@@ -81,7 +133,6 @@ while running:
 
 
         if main_page:  
-            SCREEN.fill((0, 0, 0))
             SCREEN.blit(BACKGROUND, (0, 0))
             draw_sound_button()
             main_menu()
@@ -102,10 +153,8 @@ while running:
 
             if PLAY_RECT.collidepoint(event.pos):
                 """----------------------------------------------------"""
-                print("Transition")
                 main_page = False
                 game = True
-                BACKGROUND = pygame.transform.scale(pygame.image.load("background_pokemon.png"), (800, 600))
 
             if OPTION_RECT.collidepoint(event.pos):
                 print("Options")  
