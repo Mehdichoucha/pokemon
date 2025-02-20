@@ -53,11 +53,11 @@ def main_menu():
     SCREEN.blit(BUTTON, (QUIT_RECT.x, QUIT_RECT.y))
 
     PLAY_TEXT = FONT.render("PLAY", True, WHITE)
-    OPTION_TEXT = FONT.render("OPTION", True, WHITE)
+    OPTION_TEXT = FONT.render("POKEDEX", True, WHITE)
     QUIT_TEXT = FONT.render("QUIT",True, WHITE)
 
     SCREEN.blit(PLAY_TEXT, (PLAY_RECT.x + 42, PLAY_RECT.y + 17))
-    SCREEN.blit(OPTION_TEXT, (OPTION_RECT.x+ 22, OPTION_RECT.y + 17))
+    SCREEN.blit(OPTION_TEXT, (OPTION_RECT.x+ 15, OPTION_RECT.y + 17))
     SCREEN.blit(QUIT_TEXT, (QUIT_RECT.x + 42, QUIT_RECT.y + 17))
 
 

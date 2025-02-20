@@ -1,308 +1,203 @@
-import pygame
-import random
-import time
-import sys
-
-
-pygame.init()
-pygame.mixer.init()
-
-
-pygame.mixer.music.load("musics/battle_theme1.mp3")
-pygame.mixer.music.play(loops=-1)
-pygame.mixer.music.set_volume(0.5)
-
-
-unmute_sound = pygame.image.load("images/menu/button2.png")
-mute_sound = pygame.image.load("images/menu/button2.png")
-TAILLE_ICONE = (50, 50)
-unmute_sound = pygame.transform.scale(unmute_sound, TAILLE_ICONE)
-mute_sound = pygame.transform.scale(mute_sound, TAILLE_ICONE)
-
-
-screen = pygame.display.set_mode((800, 600))
-WHITE = (255, 255, 255)
-BACKGROUND = pygame.transform.scale(pygame.image.load("images/title_background.png"), (800, 600))
-pygame.display.set_caption("Fruit Ninja")
-FONT = pygame.font.Font("pokemon_font.ttf", 40)
-
-
-sound_rect = pygame.Rect(20, 530,  40, 40)
-
-main_page = True
-
-sound_active = True
-
-
-
-
-
-def draw_sound_button():
-    """FUNCTION OF THE BUTTON"""
-    if sound_active:
-        screen.blit(unmute_sound, (sound_rect.x, sound_rect.y))
-    else:
-        screen.blit(mute_sound, (sound_rect.x, sound_rect.y))
-
-
-
-
-# Boucle principale
-clock = pygame.time.Clock()
-running = True
-game_over = False  
-
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if sound_rect.collidepoint(event.pos):
-                sound_active = not sound_active
-                if sound_active:
-                    pygame.mixer.music.set_volume(0.5)
-                else:
-                    pygame.mixer.music.set_volume(0)
-
-        
-    screen.blit(BACKGROUND, (0, 0))
-    draw_sound_button()
-
-    pygame.display.flip()
-    clock.tick(60)
-
-
-import pygame
-import random
-import time
-
-# le type défini est le pokemon qui se fait attaqué, les faiblesses / résistances dépendes de l'attaque recue, c'est le type du pokemon defensif
-# une attaque ne possède qu'un seul et unique type, alors que le pokemon peut avoir deux types au maximum
-# faiblesses du type = 1/2 de dégats recue
-# résistances du type =  fois 2 de dégats recus
-# certains types ont des immunités et les dégats recus seront de 0
-
-# des combinaisons sont possibles 
-# 1 faiblesse et 0 resistance : si un pokemon est plante pure ( sans autre type ) recois une attaque feu, il prend fois 2 de degats
-# 0 faiblesse et 1 resistance : si un pokemon est eau pure ( sans autre type ) recois une attaque feu, il prend fois 1/2 de degats
-# 2 faiblesse et 0 resistance : si un pokemon plante et acier recois une attaque feu, il prend fois 4 de degats
-# 0 faiblesse et 2 resistance : si un pokemon eau et electik recois une attaque acier il prend 1/4 de degats
-# 1 faiblesse et 1 resistance : si un pokemon eau et feu recois une attaque plante il prend des degats sans multiplicateur, les faiblesses et résistances seront annulées entre elles
-# 0 faiblesse et 0 resistance et 1 immunité : si un pokemon spectre recois une attaque normal il prend 0 degats
-# si un pokemon avec 2 types a 1 faiblesse et 1 immunité, il prendra 0 degats, l'immunité est prioritaire
-
-# exemple : 
-# un pokemon feu et acier aura comme multiplicateur de degat : 
-# de fois 4 avec une attaque sol, 2 faiblesse et 0 resistance
-# de fois 2 avec une attaque combat ou eau, 1 faiblesse et 0 resistance
-# de fois 1/2 avec une attaque dragon, normal, psy, ou vol, 0 faiblesse et 1 resistance
-# de fois 1/4 avec une attaque acier, fée, glace, insecte, ou plante, 0 faiblesse et 2 resistance
-# de fois 0 avce une attaque poison, 1 immunité
-# et pour les types d'attaques restants, les degats seront basiques, ils ne prennent pas en compte les faiblesses et resistances
-
-normal = pygame.image.load("images/types/normal.png")
-fire = pygame.image.load("images/types/fire.png")
-water = pygame.image.load("images/types/water.png")
-grass = pygame.image.load("images/types/grass.png")
-electric = pygame.image.load("images/types/electric.png")
-steel = pygame.image.load("images/types/steel.png")
-fightning = pygame.image.load("images/types/fightning.png")
-psychic = pygame.image.load("images/types/psychic.png")
-poison = pygame.image.load("images/types/poison.png")
-dragon = pygame.image.load("images/types/dragon.png")
-ghost = pygame.image.load("images/types/ghost.png")
-dark = pygame.image.load("images/types/dark.png")
-ground = pygame.image.load("images/types/ground.png")
-fairy = pygame.image.load("images/types/fairy.png")
-flying = pygame.image.load("images/types/flying.png")
-rock = pygame.image.load("images/types/rock.png")
-bug = pygame.image.load("images/types/bug.png")
-ice = pygame.image.load("images/types/ice.png")
-
-"####"
-
-# type
-# resistances : 
-# faiblesses : 
-# immunités : 
-
-# normal
-# resistances : 0
-# faiblesses : 1 ["combat"]
-# immunités : 1 ["spectre"]
-
-def normal_type():
-    normal_strength = []
-    normal_weakness = [fightning]
-    normal_immunity = [ghost]
-
-# feu
-# resistances : 6 ["acier", "fée", "glace", "insecte", "feu", plante]
-# faiblesses : 3 ["roche", "eau", "sol"]
-# immunités : 0
-
-def fire_type():
-    fire_strength = [steel, fairy, ice, bug, fire, grass]
-    fire_weakness = [rock, water, ground]
-    fire_immunity = []
-
-# eau
-# resistances : 3 ["feu", "glace", "acier"]
-# faiblesses : 2 ["plante", "electrik"]
-# immunités : 0
-
-def water_type():
-    water_strength = [fire, ice, steel]
-    water_weakness = [grass, electric]
-    water_immunity = []
-
-# plante
-# resistances : 4 ["eau", "electrik", "sol", "plante"]
-# faiblesses : 5 ["vol", "insecte", "feu", "glace", "poison"]
-# immunités : 0
-
-def grass_type():
-    grass_strength = [water, electric, ground, grass]
-    grass_weakness = [flying, bug, fire, ice, ]
-    grass_immunity = [ghost]
-
-# electrik
-# resistances : 3 ["vol", "electrik", "acier"]
-# faiblesses : 1 ["sol"]
-# immunités : 0
-
-def electric_type():
-    grass_strength = [water, electric, ground, grass]
-    grass_weakness = [flying, bug, fire, ice, ]
-    grass_immunity = [ghost]
-
-# acier ( meilleur type défensif pour moi )
-# resistances : 9 ["acier", "dragon", "fée", "glace", "insecte", "normal", "plante", "psy", "roche", "vol"]
-# faiblesses : 3 ["sol", "feu", "combat"]
-# immunités : 1 ["poison"]
-
-def steel_type():
-    grass_strength = [steel, dragon, fairy, ice, bug, normal, grass, psychic, rock, flying]
-    grass_weakness = [ground, fire, fightning]
-    grass_immunity = [poison]
-
-# combat
-# resistances : 2 ["roche", insecte]
-# faiblesses : 3 ["fée", "psy", "vol"]
-# immunités : 0
-
-def fightning_type():
-    grass_strength = [bug, rock]
-    grass_weakness = [fairy, psychic , flying]
-    grass_immunity = []
-
-# dragon
-# resistances : 4 ["eau", "plante", "feu", "electrik"]
-# faiblesses : 3 ["fée", "dragon", "glace"]
-# immunités : 0
-
-def dragon_type():
-    grass_strength = [water, grass, fire, electric]
-    grass_weakness = [fairy, dragon , ice]
-    grass_immunity = []
-
-# fée
-# resistances : 3 ["combat", "ténèbres", "insecte"]
-# faiblesses : 2 ["acier", "poison"]
-# immunités : 0 ["dragon"]
-
-def fairy_type():
-    grass_strength = [fightning, dark, bug]
-    grass_weakness = [steel, poison]
-    grass_immunity = [dragon]
-
-# glace
-# resistances : 1 ["glace"]
-# faiblesses : 4 ["feu", "acier", "combat", "roche"]
-# immunités : 0
-
-def ice_type():
-    grass_strength = [ice]
-    grass_weakness = [fire, steel, fightning, rock]
-    grass_immunity = []
-
-# insecte
-# resistances : 2 ["combat", "plante"]
-# faiblesses : 3 ["feu", "roche", "vol"]
-# immunités : 0
-
-def bug_type():
-    grass_strength = [bug, rock]
-    grass_weakness = [fairy, psychic , flying]
-    grass_immunity = []
-
-# poison
-# resistances : 5 ["poison", "fée", "combat", "plante", "insecte"]
-# faiblesses : 2 ["psy", "sol"]
-# immunités : 0
-
-def poison_type():
-    grass_strength = [poison, fairy, fightning, grass, bug]
-    grass_weakness = [psychic, ground]
-    grass_immunity = []
-
-# psy
-# resistances : 2 ["psy", "combat"]
-# faiblesses : 3 ["ténèbre", "spectre", "insecte"]
-# immunités : 0
-
-def psychic_type():
-    grass_strength = [psychic, fightning]
-    grass_weakness = [dark, ghost, bug]
-    grass_immunity = []
-
-# roche
-# resistances : 4 ["feu","normal", "vol", "poison"]
-# faiblesses : 5 ["acier", "combat", "eau", "plante", "sol"]
-# immunités : 0
-
-def rock_type():
-    grass_strength = [fire, normal, flying, poison]
-    grass_weakness = [steel, fightning, water, grass, ground]
-    grass_immunity = []
-
-# sol
-# resistances : 2 ["poison", "roche"]
-# faiblesses : 3 ["eau", "glace", plante]
-# immunités : 1 ["electrik"]
-
-def ground_type():
-    grass_strength = [poison, rock]
-    grass_weakness = [water, ice , grass]
-    grass_immunity = [electric]
-
-# spectre
-# resistances : 2 ["insecte", "poison"]
-# faiblesses : 2 ["spectre", "ténèbre"]
-# immunités : 2 ["combat", "normal"]
-
-def ghost_type():
-    grass_strength = [bug, poison]
-    grass_weakness = [ghost, dark]
-    grass_immunity = [fightning, normal]
-
-# ténèbre
-# resistances : 2 ["spectre", "ténèbre"]
-# faiblesses : 3 ["insecte", "fée", "combat"]
-# immunités : 1 ["psy"]
-
-def dark_type():
-    grass_strength = [ghost, dark]
-    grass_weakness = [bug, fairy , fightning]
-    grass_immunity = [psychic]
-
-# vol
-# resistances : 3 ["combat", "insecte", "plante"]
-# faiblesses : 3 ["roche", "glace", "electrik"]
-# immunités : 1 ["sol"]
-
-def flying_type():
-    grass_strength = [fightning, bug, grass]
-    grass_weakness = [rock, ice , electric]
-    grass_immunity = [ground]
+class Pokemon:
+    def __init__(self, name, pv, level, atk, dfc, type_pokemon,gain_xp):
+        self.__name = name
+        self.__pv = pv
+        self.__atk = atk
+        self.__dfc = dfc
+        self.__type_pokemon = type_pokemon
+        self.__level = level 
+        self.__xp = 0
+        self.__xp_to_next_level = 1000
+        self.__gain_xp = gain_xp
+    # Getter methods
+    def get_name(self):
+        return self.__name
+
+    def get_pv(self):
+        return self.__pv
+
+    def get_atk(self):
+        return self.__atk
+
+    def get_dfc(self):
+        return self.__dfc
+
+    def get_level(self):
+        return self.__level
+
+    def get_type_pokemon(self):
+        return self.__type_pokemon
+    
+    def get_xp(self):
+        return self.__xp
+    
+    def get_xp_to_next_level(self):
+        return self.__xp_to_next_level
+    
+    def get_gain_xp(self):
+        return self.__gain_xp
+
+    # Setter methods
+    def set_atk(self, atk):
+        self.__atk = atk
+
+    def set_dfc(self, dfc):
+        self.__dfc = dfc
+
+    def set_level(self, level):
+        self.__level = level
+    
+    def set_gain_xp(self,gain_xp):
+        self.__gain_xp = gain_xp
+
+    # Method to receive damage
+    def receive_damage(self, damage):
+        self.__pv -= damage
+        if self.__pv < 0:
+            self.__pv = 0
+
+    # Method to calculate damage
+    def calculate_damage(self, defense):
+        type_advantages = {
+        ("fire", "water"): 0.5,
+        ("fire", "steel"): 2,
+        ("fire", "dragon"): 0.5,
+        ("fire", "fire"): 0.5,
+        ("fire", "ice"): 2,
+        ("fire", "bug"): 2,
+        ("fire", "plant"): 2,
+        ("fire", "rock"): 0.5,
+        ("water", "dragon"): 0.5,
+        ("water", "water"): 0.5,
+        ("water", "grass"): 0.5,
+        ("water", "rock"): 2,
+        ("water", "ground"): 2,
+        ("water", "fire"): 2,
+        ("ground", "fire"): 2,
+        ("electric", "grass"): 0.5,
+        ("grass", "electric"): 2,
+        ("steel", "steel"): 2,
+        ("steel", "water"): 0.5,
+        ("steel", "electric"): 0.5,
+        ("steel", "fairy"): 2,
+        ("steel", "fire"): 0.5,
+        ("steel", "ice"): 2,
+        ("steel", "rock"): 2,
+        ("fighting", "steel"): 2,
+        ("fighting", "fairy"): 0.5,
+        ("fighting", "ice"): 2,
+        ("fighting", "bug"): 0.5,
+        ("fighting", "normal"): 2,
+        ("fighting", "poison"): 0.5,
+        ("fighting", "psychic"): 0.5,
+        ("fighting", "rock"): 2,
+        ("fighting", "ghost"): 0,
+        ("fighting", "dark"): 2,
+        ("fighting", "flying"): 0.5,
+        ("dragon", "steel"): 0.5,
+        ("dragon", "dragon"): 2,
+        ("dragon", "fairy"): 0,
+        ("electric", "dragon"): 0.5,
+        ("electric", "water"): 2,
+        ("electric", "electric"): 0.5,
+        ("electric", "grass"): 0.5,
+        ("electric", "ground"): 0,
+        ("electric", "flying"): 2,
+        ("fairy", "steel"): 0.5,
+        ("fairy", "fighting"): 2,
+        ("fairy", "dragon"): 2,
+        ("fairy", "fire"): 0.5,
+        ("fairy", "poison"): 0.5,
+        ("fairy", "dark"): 2,
+        ("ice", "steel"): 0.5,
+        ("ice", "dragon"): 2,
+        ("ice", "water"): 0.5,
+        ("ice", "fire"): 0.5,
+        ("ice", "ice"): 0.5,
+        ("ice", "grass"): 2,
+        ("ice", "ground"): 2,
+        ("ice", "flying"): 2,
+        ("bug", "steel"): 0.5,
+        ("bug", "fighting"): 0.5,
+        ("bug", "fairy"): 0.5,
+        ("bug", "fire"): 0.5,
+        ("bug", "grass"): 2,
+        ("bug", "poison"): 0.5,
+        ("bug", "psychic"): 2,
+        ("bug", "ghost"): 0.5,
+        ("bug", "dark"): 2,
+        ("bug", "flying"): 0.5,
+        ("normal", "steel"): 0.5,
+        ("normal", "rock"): 0.5,
+        ("normal", "ghost"): 0,
+        ("grass", "steel"): 0.5,
+        ("grass", "dragon"): 0.5,
+        ("grass", "water"): 2,
+        ("grass", "fire"): 0.5,
+        ("grass", "bug"): 0.5,
+        ("grass", "grass"): 0.5,
+        ("grass", "poison"): 0.5,
+        ("grass", "rock"): 2,
+        ("grass", "ground"): 2,
+        ("grass", "flying"): 0.5,
+        ("poison", "steel"): 0,
+        ("poison", "fairy"): 2,
+        ("poison", "grass"): 2,
+        ("poison", "poison"): 0.5,
+        ("poison", "rock"): 0.5,
+        ("poison", "ground"): 0.5,
+        ("poison", "ghost"): 0.5,
+        ("psychic", "steel"): 0.5,
+        ("psychic", "fighting"): 2,
+        ("psychic", "poison"): 2,
+        ("psychic", "psychic"): 0.5,
+        ("psychic", "dark"): 0,
+        ("rock", "steel"): 0.5,
+        ("rock", "fighting"): 0.5,
+        ("rock", "fire"): 2,
+        ("rock", "ice"): 2,
+        ("rock", "bug"): 2,
+        ("rock", "ground"): 0.5,
+        ("rock", "flying"): 2,
+        ("ground", "steel"): 2,
+        ("ground", "electric"): 2,
+        ("ground", "fire"): 2,
+        ("ground", "bug"): 0.5,
+        ("ground", "grass"): 0.5,
+        ("ground", "poison"): 2,
+        ("ground", "rock"): 2,
+        ("ground", "flying"): 0,
+        ("ghost", "normal"): 0,
+        ("ghost", "psychic"): 2,
+        ("ghost", "ghost"): 2,
+        ("ghost", "dark"): 0.5,
+        ("dark", "fighting"): 0.5,
+        ("dark", "fairy"): 0.5,
+        ("dark", "ghost"): 2,
+        ("dark", "psychic"): 2,
+        ("dark", "dark"): 0.5,
+        ("flying", "steel"): 0.5,
+        ("flying", "fighting"): 2,
+        ("flying", "electric"): 0.5,
+        ("flying", "bug"): 2,
+        ("flying", "grass"): 2,
+        ("flying", "rock"): 0.5
+        }            
+
+        multiple = type_advantages.get((self.__type_pokemon, defense.get_type_pokemon()), 1)
+        damage = self.__atk * multiple - defense.get_dfc()
+        return max(damage, 0)
+    
+    def level_up(self):
+        self.__level +=1
+        self.__xp -= self.__xp_to_next_level
+        self.__xp_to_next_level = int(self.__xp_to_next_level * 1,5)
+        self.__pv += 10
+        self.__atk += 5
+        self.__dfc += 5
+        print(f"{self.__name} has been level up to level {self.__level}")
+    
+    def gain_experience(self, xp_earned):
+        self.__xp += xp_earned
+        if self.__xp >= self.__xp_to_next_level:
+            self.level_up()
