@@ -11,10 +11,12 @@ pygame.display.set_caption("Pokémon")
 FONT = pygame.font.Font("pokemon_font.ttf", 48)
 
 
+pygame.mixer.music.load("musics/battle_theme1.mp3")
+pygame.mixer.music.play(loops=-1)
+pygame.mixer.music.set_volume(0.5)
 
-
-unmute_sound = pygame.image.load("images/menu/button2.png")
-mute_sound = pygame.image.load("images/menu/button2.png")
+unmute_sound = pygame.image.load("images/menu/sound_on.png")
+mute_sound = pygame.image.load("images/menu/sound_off.png")
 BUTTON = pygame.image.load("images/menu/button2.png")
 
 
@@ -54,67 +56,32 @@ def main_menu():
     OPTION_TEXT = FONT.render("OPTION", True, WHITE)
     QUIT_TEXT = FONT.render("QUIT",True, WHITE)
 
-    SCREEN.blit(PLAY_TEXT, (PLAY_RECT.x + 45, PLAY_RECT.y + 22))
-    SCREEN.blit(OPTION_TEXT, (OPTION_RECT.x+ 30, OPTION_RECT.y + 22))
-    SCREEN.blit(QUIT_TEXT, (QUIT_RECT.x + 45, QUIT_RECT.y + 22))
+    SCREEN.blit(PLAY_TEXT, (PLAY_RECT.x + 42, PLAY_RECT.y + 17))
+    SCREEN.blit(OPTION_TEXT, (OPTION_RECT.x+ 22, OPTION_RECT.y + 17))
+    SCREEN.blit(QUIT_TEXT, (QUIT_RECT.x + 42, QUIT_RECT.y + 17))
 
 
+# Menu in fight
 def game_screen():
 
     menu = pygame.transform.scale(pygame.image.load("images/menu/menu2.png"), (800, 200))
-    button = pygame.image.load("images/menu/button.png")
 
     hp1 = pygame.transform.scale(pygame.image.load("images/battle_assets/hp1.png"), (270, 80))
     hp2 = pygame.transform.scale(pygame.image.load("images/battle_assets/hp2.png"), (270, 80))
 
-    # choose the arena
-    random_wild = random.randint(1, 4)
-    if random_wild == 1:
-            bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/bush1.png"), (370, 100))
-            bush_fight1 = bush1
-            bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/bush2.png"), (600, 90))
-            bush_fight2 = bush2
-            background = pygame.image.load("images/battle_assets/background.png")
-            background_fight = background
-    if random_wild == 2:
-            bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/arena1.png"), (370, 110))
-            bush_fight1 = bush1
-            bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/arena2.png"), (600, 90))
-            bush_fight2 = bush2
-            background = pygame.image.load("images/battle_assets/background2.png")
-            background_fight = background
-    if random_wild == 3:
-            bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/beach1.png"), (370, 100))
-            bush_fight1 = bush1
-            bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/beach2.png"), (600, 90))
-            bush_fight2 = bush2
-            background = pygame.image.load("images/battle_assets/background3.png")
-            background_fight = background
-    if random_wild == 4:
-            bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/clear1.png"), (370, 100))
-            bush_fight1 = bush1
-            bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/clear2.png"), (600, 90))
-            bush_fight2 = bush2
-            background = pygame.image.load("images/battle_assets/background4.png")
-            background_fight = background
+    bush1 = pygame.transform.scale(pygame.image.load("images/battle_assets/bush1.png"), (370, 100))
+    bush2 = pygame.transform.scale(pygame.image.load("images/battle_assets/bush2.png"), (600, 90))
+    background = pygame.image.load("images/battle_assets/background.png")
 
-
-
-    SCREEN.blit(background_fight, (0, 0))
-    SCREEN.blit(bush_fight1, (420, 140))
-    SCREEN.blit(bush_fight2, (-150, 330))
+    SCREEN.blit(background, (0, 0))
+    SCREEN.blit(bush1, (420, 140))
+    SCREEN.blit(bush2, (-150, 330))
 
     SCREEN.blit(menu, (0, 420))
-    SCREEN.blit(button, (20, 465))
-    SCREEN.blit(button, (20, 530))
-    SCREEN.blit(button, (270, 465))
-    SCREEN.blit(button, (270, 530))
 
     SCREEN.blit(hp1, (10,14))
     SCREEN.blit(hp2, (520,320))
     pygame.display.flip()
-
-
 
 
 # Define all pages
@@ -164,7 +131,7 @@ while running:
                 running = False
 
         pygame.display.flip()
-        pygame.time.delay(300)
+        pygame.time.delay(3)
 
 
     pygame.display.flip()
