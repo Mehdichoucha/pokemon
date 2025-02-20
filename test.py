@@ -1,97 +1,104 @@
 import pygame
-import random
-import time
-import sys
-pygame.init()
-pygame.mixer.init()
-
-SCREEN = pygame.display.set_mode((800, 600))
-WHITE = (255, 255, 255)
-BACKGROUND = pygame.transform.scale(pygame.image.load("images/title_background.png"), (800, 600))
-pygame.display.set_caption("Fruit Ninja")
-FONT = pygame.font.Font("pokemon_font.ttf", 40)
-pygame.mixer.music.load("musics/battle_theme1.mp3")
-pygame.mixer.music.play(loops=-1)
-pygame.mixer.music.set_volume(0.5)
 
 
-unmute_sound = pygame.image.load("images/menu/button2.png")
-mute_sound = pygame.image.load("images/menu/button2.png")
-BUTTON = pygame.image.load("images/menu/button2.png")
+class Pokemon:
+    def __init__(self, name, lvl, pv, atk, dfc, vts, sprite1, sprite2):
+        self.__name = name #name
+        self.__lvl = lvl
+        self.__pv = pv # life points stat
+        self.__atk = atk # attack stat
+        self.__dfc = dfc # defence stat
+        self.__satk = atk # special attack stat
+        self.__sdfc = dfc # special defence stat
+        self.__vts = vts # speed stat
+        self.__sprite1 = sprite1
+        self.__sprite2 = sprite2
 
-unmute_sound = pygame.transform.scale(unmute_sound, (50, 50))
-mute_sound = pygame.transform.scale(mute_sound, (50, 50))
-BUTTON = pygame.transform.scale(BUTTON, (150, 80))
+        def get_name(self):
+            return self.__name
+        def get_lvl(self):
+            return self.__lvl
+        def get_pv(self):
+            return self.__pv
+        def get_atk(self):
+            return self.__atk
+        def get_dfc(self):
+            return self.__dfc
+        def get_satk(self):
+            return self.__satk
+        def get_sdfc(self):
+            return self.__sdfc
+        def get_vts(self):
+            return self.__vts
+        def get_sprite1(self):
+            return self.__sprite1
+        def get_sprite2(self):
+            return self.__sprite2
+        
+# pokemon of the player
+#    def pokemon1(self):
+#        self.__name = name #name
+#        self.__lvl = lvl
+#        self.__pv = pv # life points stat
+#        self.__atk = atk # attack stat
+#        self.__dfc = dfc # defence stat
+#        self.__satk = atk # special attack stat
+#        self.__sdfc = dfc # special defence stat
+#        self.__vts = vts # speed stat
+#        self.__sprite1 = sprite1
+#        self.__sprite2 = sprite2
+        
+# pokemon of the opponent
+#    def pokemon2(self):
+#        self.__name = name #name
+#        self.__lvl = lvl
+#        self.__pv = pv # life points stat
+#        self.__atk = atk # attack stat
+#        self.__dfc = dfc # defence stat
+#        self.__satk = atk # special attack stat
+#        self.__sdfc = dfc # special defence stat
+#        self.__vts = vts # speed stat
+#        self.__sprite1 = sprite1
+#        self.__sprite2 = sprite2
 
-
-
-
-
-
-sound_rect = pygame.Rect(20, 530,  40, 40)
-
-TITLE = pygame.transform.scale(pygame.image.load("images/menu/title.png"), (300, 100))
-PLAY_RECT = pygame.Rect(330, 220, 150, 80)
-OPTION_RECT = pygame.Rect(330, 320, 150, 80)
-QUIT_RECT = pygame.Rect(330, 420, 150, 80)
-
-
-
-def main_menu():
-    SCREEN.blit(TITLE, (250, 50))
-    SCREEN.blit(BUTTON, (PLAY_RECT.x, PLAY_RECT.y))
-    SCREEN.blit(BUTTON, (OPTION_RECT.x, OPTION_RECT.y))
-    SCREEN.blit(BUTTON, (QUIT_RECT.x, QUIT_RECT.y))
-    PLAY_TEXT = FONT.render("PLAY", True, WHITE)
-    OPTION_TEXT = FONT.render("OPTION", True, WHITE)
-    QUIT_TEXT = FONT.render("QUIT",True, WHITE)
-    SCREEN.blit(PLAY_TEXT, (PLAY_RECT.x + 45, PLAY_RECT.y + 22))
-    SCREEN.blit(OPTION_TEXT, (OPTION_RECT.x+ 30, OPTION_RECT.y + 22))
-    SCREEN.blit(QUIT_TEXT, (QUIT_RECT.x + 45, QUIT_RECT.y + 22))
-
-
-
-def draw_sound_button():
-    """FUNCTION OF THE BUTTON"""
-    if sound_active:
-        SCREEN.blit(unmute_sound, (sound_rect.x, sound_rect.y))
-    else:
-        SCREEN.blit(mute_sound, (sound_rect.x, sound_rect.y))
-
-
-
-
-# Boucle principale
-
-main_page = True
-game = False
-sound_active = True
-running = True
-
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            running = False
-
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if sound_rect.collidepoint(event.pos):
-                sound_active = not sound_active
-                if sound_active:
-                    pygame.mixer.music.set_volume(0.5)
-                else:
-                    pygame.mixer.music.set_volume(0)
-            if PLAY_RECT.collidepoint(event.pos):
-                main_page = False
-                game = True
-                 
-
-    if main_page:  
-        SCREEN.blit(BACKGROUND, (0, 0))
-        draw_sound_button()
-        main_menu()
+class Attacks:
+    def __init__(self, name, type, power, accuracy, pp):
+        self.name = name
+        self.type = type
+        self.power = power # damage
+        self.accuracy = accuracy # the attack can miss
+        self.pp = pp # uses of the attack
 
 
-    pygame.display.flip()
-    clock = pygame.time.Clock()
-    clock.tick(60)
+slash = Attacks("Tranche", "normal", 70, 100, 20)
+air_slash = Attacks("Lame d'Air", "fly", 70, 95, 10)
+flamethrower = Attacks("Lance Flame", "fire", 90, 100, 15)
+dragon_claw = Attacks("Draco Griffe", "dragon", 90, 100, 15)
+wave_crash = Attacks("Aqua Tacle", "water", 120, 75, 10)
+meteor_mash = Attacks("Poing Météore", "steel", 90, 90, 10)
+iron_tail = Attacks("Queue de fer", "steel", 100, 75, 15)
+low_sweep = Attacks("Baleyette", "fight", 65, 100, 20)
+aura_sphere = Attacks("Aura Sphère", "fight", 80, 100, 15)
+luster_purge = ("Lumi-Éclat", "psy", 95, 100, 5)
+blizzard = Attacks("Blizzard", "ice", 110, 75, 5)
+ice_punch = Attacks("Poing Glace", "ice", 75, 100, 15)
+
+
+
+
+charmander_sprite1 = pygame.image.load("images/pokemon/charmender.png")
+charmander_sprite2 = pygame.image.load("images/pokemon/charmender.png")
+charmender = Pokemon("salamèche", 10, 39, 52, 43, 65, charmander_sprite1, charmander_sprite2)
+
+pikachu_sprite1 = pygame.image.load("images/pokemon/pikachu.png")
+pikachu_sprite2 = pygame.image.load("images/pokemon/pikachu.png")
+pikachu = Pokemon("pikachu", 10, 35, 55, 40, 90, pikachu_sprite1, pikachu_sprite2)
+
+squirtle_sprite1 = pygame.image.load("images/pokemon/squirtle.png")
+squirtle_sprite2 = pygame.image.load("images/pokemon/squirtle.png")
+squirtle = Pokemon("carapuce", 10,  44, 48, 64, 43, squirtle_sprite1, squirtle_sprite2)
+
+bulbasaur_sprite1 = pygame.image.load("images/pokemon/bulbasaur.png")
+bulbasaur_sprite2 = pygame.image.load("images/pokemon/bulbasaur.png")
+bulbasaur = Pokemon("bulbizarre", 10, 45, 55, 40, 90, bulbasaur_sprite1, bulbasaur_sprite2)
+

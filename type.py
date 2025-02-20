@@ -1,6 +1,81 @@
 import pygame
 import random
 import time
+import sys
+
+
+pygame.init()
+pygame.mixer.init()
+
+
+pygame.mixer.music.load("musics/battle_theme1.mp3")
+pygame.mixer.music.play(loops=-1)
+pygame.mixer.music.set_volume(0.5)
+
+
+unmute_sound = pygame.image.load("images/menu/button2.png")
+mute_sound = pygame.image.load("images/menu/button2.png")
+TAILLE_ICONE = (50, 50)
+unmute_sound = pygame.transform.scale(unmute_sound, TAILLE_ICONE)
+mute_sound = pygame.transform.scale(mute_sound, TAILLE_ICONE)
+
+
+screen = pygame.display.set_mode((800, 600))
+WHITE = (255, 255, 255)
+BACKGROUND = pygame.transform.scale(pygame.image.load("images/title_background.png"), (800, 600))
+pygame.display.set_caption("Fruit Ninja")
+FONT = pygame.font.Font("pokemon_font.ttf", 40)
+
+
+sound_rect = pygame.Rect(20, 530,  40, 40)
+
+main_page = True
+
+sound_active = True
+
+
+
+
+
+def draw_sound_button():
+    """FUNCTION OF THE BUTTON"""
+    if sound_active:
+        screen.blit(unmute_sound, (sound_rect.x, sound_rect.y))
+    else:
+        screen.blit(mute_sound, (sound_rect.x, sound_rect.y))
+
+
+
+
+# Boucle principale
+clock = pygame.time.Clock()
+running = True
+game_over = False  
+
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if sound_rect.collidepoint(event.pos):
+                sound_active = not sound_active
+                if sound_active:
+                    pygame.mixer.music.set_volume(0.5)
+                else:
+                    pygame.mixer.music.set_volume(0)
+
+        
+    screen.blit(BACKGROUND, (0, 0))
+    draw_sound_button()
+
+    pygame.display.flip()
+    clock.tick(60)
+
+
+import pygame
+import random
+import time
 
 # le type défini est le pokemon qui se fait attaqué, les faiblesses / résistances dépendes de l'attaque recue, c'est le type du pokemon defensif
 # une attaque ne possède qu'un seul et unique type, alors que le pokemon peut avoir deux types au maximum
