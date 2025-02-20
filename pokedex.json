@@ -1,22 +1,476 @@
 {
-    "Pokemon": [
-        {
-            "name": "Charmander",
-            "type": "Fire",
-            "level": 1,
-            "evolution": "Charizard"
-        },
-        {
-            "name": "Bulbasaur",
-            "type": "Grass",
-            "level": 3,
-            "evolution": "Ivysaur"
-        },
-        {
-            "name": "Squirtle",
-            "type": "Water",
-            "level": 5,
-            "evolution": "Wartortle"
-        }
+    "Pokemon": [    
+      {
+        "name": "Charmander",
+        "level": 1,
+        "type_pokemon": ["Fire"],
+        "evolution": "Charmeleon",
+        "attack": 52,
+        "defense": 43,
+        "hp": 39,
+        "speed": 65,
+        "xp": 0
+      },
+      {
+        "name": "Charmeleon",
+        "level": 1,
+        "type_pokemon": ["Fire"],
+        "evolution": "Charizard",
+        "attack": 64,
+        "defense": 58,
+        "hp": 58,
+        "speed": 80,
+        "xp": 0
+      },
+      {
+        "name": "Charizard",
+        "level": 1,
+        "type_pokemon": ["Fire", "Flying"],
+        "evolution": null,
+        "attack": 84,
+        "defense": 78,
+        "hp": 78,
+        "speed": 100,
+        "xp": 0
+      },
+      {
+        "name": "Bulbasaur",
+        "level": 1,
+        "type_pokemon": ["Grass", "Poison"],
+        "evolution": "Ivysaur",
+        "attack": 49,
+        "defense": 49,
+        "hp": 45,
+        "speed": 45,
+        "xp": 0
+      },
+      {
+        "name": "Ivysaur",
+        "level": 1,
+        "type_pokemon": ["Grass", "Poison"],
+        "evolution": "Venusaur",
+        "attack": 62,
+        "defense": 63,
+        "hp": 60,
+        "speed": 60,
+        "xp": 0
+      },
+      {
+        "name": "Venusaur",
+        "level": 1,
+        "type_pokemon": ["Grass", "Poison"],
+        "evolution": null,
+        "attack": 82,
+        "defense": 83,
+        "hp": 80,
+        "speed": 80,
+        "xp": 0
+      },
+      {
+        "name": "Squirtle",
+        "level": 1,
+        "type_pokemon": ["Water"],
+        "evolution": "Wartortle",
+        "attack": 48,
+        "defense": 65,
+        "hp": 44,
+        "speed": 43,
+        "xp": 0
+      },
+      {
+        "name": "Wartortle",
+        "level": 1,
+        "type_pokemon": ["Water"],
+        "evolution": "Blastoise",
+        "attack": 63,
+        "defense": 80,
+        "hp": 59,
+        "speed": 58,
+        "xp": 0
+      },
+      {
+        "name": "Blastoise",
+        "level": 1,
+        "type_pokemon": ["Water"],
+        "evolution": null,
+        "attack": 83,
+        "defense": 100,
+        "hp": 79,
+        "speed": 78,
+        "xp": 0
+      },
+      {
+        "name": "Vanillite",
+        "level": 1,
+        "type_pokemon": ["Ice"],
+        "evolution": "Vanillish",
+        "attack": 50,
+        "defense": 50,
+        "hp": 36,
+        "speed": 44,
+        "xp": 0
+      },
+      {
+        "name": "Vanillish",
+        "level": 1,
+        "type_pokemon": ["Ice"],
+        "evolution": "Vanilluxe",
+        "attack": 65,
+        "defense": 65,
+        "hp": 51,
+        "speed": 59,
+        "xp": 0
+      },
+      {
+        "name": "Vanilluxe",
+        "level": 1,
+        "type_pokemon": ["Ice"],
+        "evolution": null,
+        "attack": 110,
+        "defense": 95,
+        "hp": 71,
+        "speed": 79,
+        "xp": 0
+      },
+      {
+        "name": "Marcacrin",
+        "level": 1,
+        "type_pokemon": ["Ice", "Ground"],
+        "evolution": "Piloswine",
+        "attack": 50,
+        "defense": 40,
+        "hp": 50,
+        "speed": 50,
+        "xp": 0
+      },
+      {
+        "name": "Piloswine",
+        "level": 1,
+        "type_pokemon": ["Ice", "Ground"],
+        "evolution": "Mamoswine",
+        "attack": 100,
+        "defense": 80,
+        "hp": 100,
+        "speed": 50,
+        "xp": 0
+      },
+      {
+        "name": "Mamoswine",
+        "level": 1,
+        "type_pokemon": ["Ice", "Ground"],
+        "evolution": null,
+        "attack": 130,
+        "defense": 80,
+        "hp": 110,
+        "speed": 80,
+        "xp": 0
+      },
+      {
+        "name": "Castform",
+        "level": 1,
+        "type_pokemon": ["Normal"],
+        "evolution": null,
+        "attack": 70,
+        "defense": 70,
+        "hp": 70,
+        "speed": 70,
+        "xp": 0
+      },
+      {
+        "name": "Eevee",
+        "level": 1,
+        "type_pokemon": ["Normal"],
+        "evolution": "Espeon",
+        "attack": 55,
+        "defense": 50,
+        "hp": 55,
+        "speed": 50,
+        "xp": 0
+      },{
+        "name": "Espeon",
+        "level": 1,
+        "type_pokemon": ["Psychic"],
+        "evolution": null,
+        "attack": 65,
+        "defense": 60,
+        "hp": 65,
+        "speed": 110,
+        "xp": 0
+      },
+      {
+        "name": "Moltres",
+        "level": 1,
+        "type_pokemon": ["Fire", "Flying"],
+        "evolution": null,
+        "attack": 100,
+        "defense": 90,
+        "hp": 90,
+        "speed": 90,
+        "xp": 0
+      },
+      {
+        "name": "Happiny",
+        "level": 1,
+        "type_pokemon": ["Normal"],
+        "evolution": "Blissey",
+        "attack": 5,
+        "defense": 5,
+        "hp": 100,
+        "speed": 30,
+        "xp": 0
+      },
+      {
+        "name": "Chansey",
+        "level": 1,
+        "type_pokemon": ["Normal"],
+        "evolution": "Blissey",
+        "attack": 5,
+        "defense": 5,
+        "hp": 250,
+        "speed": 50,
+        "xp": 0
+      },
+      {
+        "name": "Blissey",
+        "level": 1,
+        "type_pokemon": ["Normal"],
+        "evolution": null,
+        "attack": 10,
+        "defense": 10,
+        "hp": 255,
+        "speed": 55,
+        "xp": 0
+      },
+      {
+        "name": "Gastly",
+        "level": 1,
+        "type_pokemon": ["Ghost", "Poison"],
+        "evolution": "Haunter",
+        "attack": 35,
+        "defense": 30,
+        "hp": 30,
+        "speed": 80,
+        "xp": 0
+      },
+      {
+        "name": "Haunter",
+        "level": 1,
+        "type_pokemon": ["Ghost", "Poison"],
+        "evolution": "Gengar",
+        "attack": 50,
+        "defense": 45,
+        "hp": 45,
+        "speed": 95,
+        "xp": 0
+      },
+      {
+        "name": "Gengar",
+        "level": 1,
+        "type_pokemon": ["Ghost", "Poison"],
+        "evolution": null,
+        "attack": 65,
+        "defense": 60,
+        "hp": 60,
+        "speed": 110,
+        "xp": 0
+      },
+      {
+        "name": "Pikachu",
+        "level": 1,
+        "type_pokemon": ["Electric"],
+        "evolution": "Raichu",
+        "attack": 55,
+        "defense": 40,
+        "hp": 35,
+        "speed": 90,
+        "xp": 0
+      },
+      {
+        "name": "Snivy",
+        "level": 1,
+        "type_pokemon": ["Grass"],
+        "evolution": "Servine",
+        "attack": 45,
+        "defense": 55,
+        "hp": 45,
+        "speed": 63,
+        "xp": 0
+      },
+      {
+        "name": "Servine",
+        "level": 1,
+        "type_pokemon": ["Grass"],
+        "evolution": "Serperior",
+        "attack": 60,
+        "defense": 75,
+        "hp": 60,
+        "speed": 83,
+        "xp": 0
+      },
+      {
+        "name": "Serperior",
+        "level": 1,
+        "type_pokemon": ["Grass"],
+        "evolution": null,
+        "attack": 75,
+        "defense": 95,
+        "hp": 75,
+        "speed": 113,
+        "xp": 0
+      },
+      {
+        "name": "Caterpie", 
+        "level": 1, 
+        "type_pokemon": ["Bug"], 
+        "evolution": "Metapod", 
+        "attack": 30, 
+        "defense": 35, 
+        "hp": 45, 
+        "speed": 45, 
+        "xp": 0
+    },
+    {
+        "name": "Metapod", 
+        "level": 1, 
+        "type_pokemon": ["Bug"], 
+        "evolution": "Butterfree", 
+        "attack": 20, 
+        "defense": 55, 
+        "hp": 50, 
+        "speed": 30, 
+        "xp": 0
+    },
+    {
+        "name": "Butterfree", 
+        "level": 1, 
+        "type_pokemon": ["Bug", "Flying"], 
+        "evolution": "Aucune", 
+        "attack": 45, 
+        "defense": 50, 
+        "hp": 60, 
+        "speed": 70, 
+        "xp": 0
+    },
+    {
+        "name": "Dratini", 
+        "level": 1, 
+        "type_pokemon": ["Dragon"], 
+        "evolution": "Dragonair", 
+        "attack": 64, 
+        "defense": 45, 
+        "hp": 41, 
+        "speed": 50, 
+        "xp": 0
+    },
+    {
+        "name": "Dragonair", 
+        "level": 1, 
+        "type_pokemon": ["Dragon"], 
+        "evolution": "Dragonite", 
+        "attack": 84, 
+        "defense": 65, 
+        "hp": 61, 
+        "speed": 70, 
+        "xp": 0
+    },
+    {
+        "name": "Dragonite", 
+        "level": 1, 
+        "type_pokemon": ["Dragon", "Flying"], 
+        "evolution": "Aucune", 
+        "attack": 134, 
+        "defense": 95, 
+        "hp": 91, 
+        "speed": 80, 
+        "xp": 0
+    },
+    {
+        "name": "Riolu", 
+        "level": 1, 
+        "type_pokemon": ["Fighting"], 
+        "evolution": "Lucario", 
+        "attack": 70, 
+        "defense": 40, 
+        "hp": 40, 
+        "speed": 60, 
+        "xp": 0
+    },
+    {
+        "name": "Lucario", 
+        "level": 1, 
+        "type_pokemon": ["Fighting", "Steel"], 
+        "evolution": "Aucune", 
+        "attack": 110, 
+        "defense": 70, 
+        "hp": 70, 
+        "speed": 90, 
+        "xp": 0
+    },
+    {
+        "name": "Diglett", 
+        "level": 1, 
+        "type_pokemon": ["Ground"], 
+        "evolution": "Triopikeur", 
+        "attack": 55, 
+        "defense": 25, 
+        "hp": 10, 
+        "speed": 95, 
+        "xp": 0
+    },
+    {
+        "name": "Triopikeur", 
+        "level": 1, 
+        "type_pokemon": ["Ground"], 
+        "evolution": "Aucune", 
+        "attack": 100, 
+        "defense": 50, 
+        "hp": 35, 
+        "speed": 120, 
+        "xp": 0
+    },
+    {
+        "name": "Magikarp", 
+        "level": 1, 
+        "type_pokemon": ["Water"], 
+        "evolution": "Gyarados", 
+        "attack": 10, 
+        "defense": 55, 
+        "hp": 20, 
+        "speed": 80, 
+        "xp": 0
+    },
+    {
+        "name": "Gyarados", 
+        "level": 1, 
+        "type_pokemon": ["Water", "Flying"], 
+        "evolution": "Aucune", 
+        "attack": 125, 
+        "defense": 79, 
+        "hp": 95, 
+        "speed": 81, 
+        "xp": 0
+    },
+    {
+        "name": "Galarian Farfetch'd", 
+        "level": 1, 
+        "type_pokemon": ["Fighting"], 
+        "evolution": "Sirfetch'd", 
+        "attack": 95, 
+        "defense": 55, 
+        "hp": 52, 
+        "speed": 65, 
+        "xp": 0
+    },
+    {
+        "name": "Sirfetch'd", 
+        "level": 1, 
+        "type_pokemon": ["Fighting"], 
+        "evolution": "Aucune", 
+        "attack": 135, 
+        "defense": 95, 
+        "hp": 62, 
+        "speed": 65, 
+        "xp": 0
+    }
     ]
-}
+  }
