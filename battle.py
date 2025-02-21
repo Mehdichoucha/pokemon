@@ -53,10 +53,10 @@ circle1_x, circle1_y = 100, 400
 circle2_x, circle2_y = 400, 500
 circle_radius = 50
 
-pokemon1 = Pokemon("Pikachu",35,1,55,40,"electric",0)
+pokemon1 = Pokemon("Pikachu",100,1,55,40,"electric",0)
 pokemon2 = Pokemon("Bulbizarre", 45, 1,49, 49, "plant",0)
 pokemon3 = Pokemon("Salamèche",39,1,52,43,"fire",0)
-pokemon4 = Pokemon("Mustébouée",55,1,65,35,"water",0)
+pokemon4 = Pokemon("Mustébouée",100,1,65,35,"water",0)
 
 combat = Battle(pokemon1,pokemon4)
 

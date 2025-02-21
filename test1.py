@@ -185,7 +185,7 @@ class Pokemon:
         }            
 
         multiple = type_advantages.get((self.__type_pokemon, defense.get_type_pokemon()), 1)
-        damage = self.__atk * multiple - defense.get_dfc()
+        damage = self.__atk * multiple - int(defense.get_dfc())
         return max(damage, 0)
     
     def level_up(self):
