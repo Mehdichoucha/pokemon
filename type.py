@@ -67,6 +67,9 @@ class Pokemon:
         ("fire", "bug"): 2,
         ("fire", "plant"): 2,
         ("fire", "rock"): 0.5,
+        ("fire", "electric"): 1,
+        ("electric", "fire"): 1,
+
         ("water", "dragon"): 0.5,
         ("water", "water"): 0.5,
         ("water", "grass"): 0.5,
