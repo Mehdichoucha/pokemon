@@ -1,25 +1,21 @@
 from test1 import Pokemon
 import pygame
 import json
-
-import random
 import time
 pygame.init()
 pygame.mixer.init()
 
+
 SCREEN = pygame.display.set_mode((800, 600))
 WHITE = (255, 255, 255)
 BLACK = (0,0,0)
-GREEN = (0,255,0)
-RED = (255,0,0)
-
 WIDTH,HEIGHT = 800,600
 BACKGROUND = pygame.transform.scale(pygame.image.load("images/title_background.png"), (800, 600))
 pygame.display.set_caption("Pokémon")
 FONT = pygame.font.Font("pokemon_font.ttf", 48)
 
 
-pygame.mixer.music.load("musics/title_theme.mp3")
+pygame.mixer.music.load("musics/battle_theme1.mp3")
 pygame.mixer.music.play(loops=-1)
 pygame.mixer.music.set_volume(0.5)
 
@@ -88,14 +84,13 @@ def game_screen():
 
     buttons = draw_action_button()
     return buttons
-
 def draw_action_button():
     """Fonction pour dessiner les boutons d'action"""
     button_width, button_height = 150, 50
     button_margin = 20
     buttons = [
         {"text": "Attack", "rect": pygame.Rect(button_margin, HEIGHT - button_height - button_margin, button_width, button_height)},
-        {"text": "Catch", "rect": pygame.Rect(button_margin * 2 + button_width, HEIGHT - button_height - button_margin, button_width, button_height)},
+        {"text": "Change", "rect": pygame.Rect(button_margin * 2 + button_width, HEIGHT - button_height - button_margin, button_width, button_height)},
         {"text": "Escape", "rect": pygame.Rect(button_margin * 3 + button_width * 2, HEIGHT - button_height - button_margin, button_width, button_height)},
     ]
     for button in buttons:
@@ -142,10 +137,10 @@ while running:
                     game = True
 
                 if OPTION_RECT.collidepoint(mouse_pos):
-                    print("Pokédex")
+                    print("f")
 
                 if QUIT_RECT.collidepoint(mouse_pos):
-                    print("Qutt")
+                    print("Quitter")
                     running = False
 
             if game:
@@ -153,8 +148,8 @@ while running:
                     if button["rect"].collidepoint(mouse_pos):
                         if button["text"] == "Attack":
                             print("Attack!")
-                        elif button["text"] == "Catch":
-                            print("Catch Pokémon")
+                        elif button["text"] == "Change":
+                            print("Change Pokémon")
                         elif button["text"] == "Escape":
                             print("Escape!")
                             game = False  # Retour au menu principal
