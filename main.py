@@ -1,4 +1,4 @@
-from test1 import Pokemon
+from type import Pokemon
 import pygame
 import json
 
@@ -95,7 +95,7 @@ def draw_action_button():
     button_margin = 20
     buttons = [
         {"text": "Attack", "rect": pygame.Rect(button_margin, HEIGHT - button_height - button_margin, button_width, button_height)},
-        {"text": "Change", "rect": pygame.Rect(button_margin * 2 + button_width, HEIGHT - button_height - button_margin, button_width, button_height)},
+        {"text": "Catch", "rect": pygame.Rect(button_margin * 2 + button_width, HEIGHT - button_height - button_margin, button_width, button_height)},
         {"text": "Escape", "rect": pygame.Rect(button_margin * 3 + button_width * 2, HEIGHT - button_height - button_margin, button_width, button_height)},
     ]
     for button in buttons:
@@ -145,7 +145,7 @@ while running:
                     print("Pokédex")
 
                 if QUIT_RECT.collidepoint(mouse_pos):
-                    print("Quitter")
+                    print("Qutt")
                     running = False
 
             if game:
@@ -153,8 +153,8 @@ while running:
                     if button["rect"].collidepoint(mouse_pos):
                         if button["text"] == "Attack":
                             print("Attack!")
-                        elif button["text"] == "Change":
-                            print("Change Pokémon")
+                        elif button["text"] == "Catch":
+                            print("Catch Pokémon")
                         elif button["text"] == "Escape":
                             print("Escape!")
                             game = False  # Retour au menu principal
